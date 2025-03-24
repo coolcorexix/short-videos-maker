@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Transcript Fetcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+    #transcript {
+      white-space: pre-wrap;
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .loading {
+      display: none;
+      margin-top: 20px;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .transcript-segment {
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .timestamp {
+      color: #666;
+      font-weight: bold;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    .timestamp:hover {
+      color: #ff0000;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    .video-info {
+      margin-top: 20px;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .segments-container {
+      margin-top: 15px;
+    }
+    .chapters-container {
+      margin-top: 15px;
+    }
+    .chapter-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f8f8f8;
+      border-left: 3px solid #ff0000;
+    }
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    .chapter-duration {
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+    .timestamp {
+      color: #666;
+      font-weight: bold;
+      margin-right: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .timestamp:hover {
+      color: #ff0000;
+      text-decoration: underline;
+    }
+    .toggle-transcript {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .toggle-transcript:hover {
+      background-color: #e0e0e0;
+    }
+    .chapter-transcript {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .chapter-duration {
+      color: #666;
+      font-size: 0.9em;
+      margin-left: 10px;
+    }
+    .deepseek-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f0f8ff;
+      border-radius: 5px;
+    }
+    
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      resize: vertical;
+    }
+    
+    .analysis-result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: white;
+      border-radius: 5px;
+      border-left: 3px solid #4285f4;
+      white-space: pre-wrap;
+    }
+    .overall-analysis {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f0f8ff;
+      border-radius: 5px;
+    }
+    .chapter-analysis {
+      margin-bottom: 15px;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-left: 3px solid #4285f4;
+      border-radius: 5px;
+    }
+    .chapter-analysis h5 {
+      margin-top: 0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Transcript Fetcher</h1>
+    <p>Enter a YouTube URL:</p>
+    
+    <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=...">
+    <div class="button-group">
+      <button onclick="fetchTranscript()">Get Transcript</button>
+      <button onclick="fetchVideoSegments()">Get Video Info</button>
+      <button onclick="fetchVideoChapters()">Get Chapters</button>
+      <button onclick="fetchCombined()">Get Combined Data</button>
+    </div>
+    
+    <div id="loading" class="loading">Loading...</div>
+    <div id="error" class="error"></div>
+    
+    <h2>Results:</h2>
+    <div id="transcript"></div> 
+    <div id="videoInfo" class="video-info"></div>
+
+    <div class="deepseek-section">
+      <h2>Analyze with DeepSeek</h2>
+      <div class="input-group">
+        <textarea id="questionInput" placeholder="Enter your question about the video..." rows="3"></textarea>
+        <button onclick="analyzeTranscript()">Analyze Transcript</button>
+      </div>
+      <div id="analysisResult" class="analysis-result"></div>
+    </div>
+
+    <div class="cache-controls">
+      <h3>Development Cache Controls</h3>
+      <button onclick="clearAllCache()">Clear All Cache</button>
+      <button onclick="clearVideoCache()">Clear Current Video Cache</button>
+    </div>
+  </div>
+
+  <script>
+    async function fetchTranscript() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      const transcriptDiv = document.getElementById('transcript');
+      const loadingDiv = document.getElementById('loading');
+      const errorDiv = document.getElementById('error');
+      
+      // Reset
+      transcriptDiv.textContent = '';
+      errorDiv.textContent = '';
+      loadingDiv.style.display = 'block';
+      
+      if (!url) {
+        errorDiv.textContent = 'Please enter a YouTube URL';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/transcript', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch transcript');
+        }
+        
+        // Display the transcript with timestamps
+        transcriptDiv.innerHTML = '';
+        
+        if (data.segments && data.segments.length > 0) {
+          // Create a formatted transcript with timestamps
+          data.segments.forEach(segment => {
+            const minutes = Math.floor(segment.start / 60);
+            const seconds = Math.floor(segment.start % 60);
+            const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const segmentElement = document.createElement('div');
+            segmentElement.className = 'transcript-segment';
+            segmentElement.innerHTML = `<span class="timestamp">[${formattedTime}]</span> ${segment.text}`;
+            transcriptDiv.appendChild(segmentElement);
+          });
+        } else {
+          transcriptDiv.textContent = data.plainText;
+        }
+        
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    async function fetchVideoSegments() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      const transcriptDiv = document.getElementById('transcript');
+      const videoInfoDiv = document.getElementById('videoInfo');
+      const loadingDiv = document.getElementById('loading');
+      const errorDiv = document.getElementById('error');
+      
+      // Reset
+      transcriptDiv.textContent = '';
+      videoInfoDiv.innerHTML = '';
+      errorDiv.textContent = '';
+      loadingDiv.style.display = 'block';
+      
+      if (!url) {
+        errorDiv.textContent = 'Please enter a YouTube URL';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/video-segments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch video segments');
+        }
+        
+        // Display video info
+        videoInfoDiv.innerHTML = `
+          <h3>${data.title}</h3>
+          <p><strong>Channel:</strong> ${data.channelTitle}</p>
+          <p><strong>Published:</strong> ${new Date(data.publishedAt).toLocaleDateString()}</p>
+          <p><strong>Description:</strong> ${data.description.substring(0, 200)}${data.description.length > 200 ? '...' : ''}</p>
+        `;
+        
+        // Display segments
+        transcriptDiv.innerHTML = '<h3>Video Segments:</h3>';
+        
+        if (data.segments && data.segments.length > 0) {
+          const segmentsContainer = document.createElement('div');
+          segmentsContainer.className = 'segments-container';
+          
+          data.segments.forEach(segment => {
+            const minutes = Math.floor(segment.start / 60);
+            const seconds = Math.floor(segment.start % 60);
+            const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const segmentElement = document.createElement('div');
+            segmentElement.className = 'transcript-segment';
+            segmentElement.innerHTML = `<span class="timestamp">[${formattedTime}]</span> ${segment.text}`;
+            segmentsContainer.appendChild(segmentElement);
+          });
+          
+          transcriptDiv.appendChild(segmentsContainer);
+        } else {
+          transcriptDiv.innerHTML += '<p>No segments found for this video.</p>';
+        }
+        
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    async function fetchVideoChapters() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      const transcriptDiv = document.getElementById('transcript');
+      const videoInfoDiv = document.getElementById('videoInfo');
+      const loadingDiv = document.getElementById('loading');
+      const errorDiv = document.getElementById('error');
+      
+      // Reset
+      transcriptDiv.textContent = '';
+      videoInfoDiv.innerHTML = '';
+      errorDiv.textContent = '';
+      loadingDiv.style.display = 'block';
+      
+      if (!url) {
+        errorDiv.textContent = 'Please enter a YouTube URL';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/video-chapters', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch video chapters');
+        }
+        
+        // Display video info
+        videoInfoDiv.innerHTML = `
+          <h3>${data.title}</h3>
+          <p><strong>Channel:</strong> ${data.channelTitle}</p>
+          ${!data.hasActualChapters ? '<p><em>Note: No official chapters found. Showing estimated segments.</em></p>' : ''}
+        `;
+        
+        // Display chapters
+        transcriptDiv.innerHTML = '<h3>Video Chapters:</h3>';
+        
+        if (data.chapters && data.chapters.length > 0) {
+          const chaptersContainer = document.createElement('div');
+          chaptersContainer.className = 'chapters-container';
+          
+          data.chapters.forEach((chapter, index) => {
+            const chapterElement = document.createElement('div');
+            chapterElement.className = 'chapter-item';
+            
+            // Create YouTube timestamp URL
+            const timestampUrl = `https://www.youtube.com/watch?v=${data.videoId}&t=${Math.floor(chapter.start)}s`;
+            
+            chapterElement.innerHTML = `
+              <div class="chapter-header">
+                <a href="${timestampUrl}" target="_blank" class="timestamp">[${chapter.start}]</a>
+                <strong>${chapter.title}</strong>
+              </div>
+              ${index < data.chapters.length - 1 ? 
+                `<div class="chapter-duration">(Duration: ${formatDuration(data.chapters[index+1].start - chapter.start)})</div>` : 
+                ''}
+            `;
+            chaptersContainer.appendChild(chapterElement);
+          });
+          
+          transcriptDiv.appendChild(chaptersContainer);
+        } else {
+          transcriptDiv.innerHTML += '<p>No chapters found for this video.</p>';
+        }
+        
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    async function fetchCombined() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      const transcriptDiv = document.getElementById('transcript');
+      const videoInfoDiv = document.getElementById('videoInfo');
+      const loadingDiv = document.getElementById('loading');
+      const errorDiv = document.getElementById('error');
+      
+      // Reset
+      transcriptDiv.textContent = '';
+      videoInfoDiv.innerHTML = '';
+      errorDiv.textContent = '';
+      loadingDiv.style.display = 'block';
+      
+      if (!url) {
+        errorDiv.textContent = 'Please enter a YouTube URL';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/combined', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch combined data');
+        }
+        
+        // Display video info
+        videoInfoDiv.innerHTML = `
+          <h3>${data.title}</h3>
+          <p><strong>Channel:</strong> ${data.channelTitle}</p>
+        `;
+        
+        // Display chapters with nested transcript segments
+        transcriptDiv.innerHTML = '<h3>Video Chapters with Transcript:</h3>';
+        
+        if (data.chapters && data.chapters.length > 0) {
+          const chaptersContainer = document.createElement('div');
+          chaptersContainer.className = 'chapters-container';
+          
+          data.chapters.forEach((chapter) => {
+            const chapterElement = document.createElement('div');
+            chapterElement.className = 'chapter-item';
+            
+            // Create YouTube timestamp URL
+            const timestampUrl = `https://www.youtube.com/watch?v=${data.videoId}&t=${Math.floor(chapter.start)}s`;
+            
+            // Format start time for display
+            const startMinutes = Math.floor(chapter.start / 60);
+            const startSeconds = Math.floor(chapter.start % 60);
+            const formattedStart = `${startMinutes.toString().padStart(2, '0')}:${startSeconds.toString().padStart(2, '0')}`;
+            
+            // Chapter header
+            const chapterHeader = document.createElement('div');
+            chapterHeader.className = 'chapter-header';
+            chapterHeader.innerHTML = `
+              <a href="${timestampUrl}" target="_blank" class="timestamp">[${formattedStart}]</a>
+              <strong>${chapter.title}</strong>
+              <span class="chapter-duration">(Duration: ${chapter.durationFormatted})</span>
+            `;
+            
+            chapterElement.appendChild(chapterHeader);
+            
+            // Toggle button for transcript
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = 'Show Transcript';
+            toggleButton.className = 'toggle-transcript';
+            toggleButton.onclick = function() {
+              const transcriptContainer = this.nextElementSibling;
+              if (transcriptContainer.style.display === 'none') {
+                transcriptContainer.style.display = 'block';
+                this.textContent = 'Hide Transcript';
+              } else {
+                transcriptContainer.style.display = 'none';
+                this.textContent = 'Show Transcript';
+              }
+            };
+            chapterElement.appendChild(toggleButton);
+            
+            // Transcript container
+            const transcriptContainer = document.createElement('div');
+            transcriptContainer.className = 'chapter-transcript';
+            transcriptContainer.style.display = 'none';
+            
+            if (chapter.segments && chapter.segments.length > 0) {
+              chapter.segments.forEach(segment => {
+                const segmentElement = document.createElement('div');
+                segmentElement.className = 'transcript-segment';
+                
+                // Format segment time
+                const segMinutes = Math.floor(segment.start / 60);
+                const segSeconds = Math.floor(segment.start % 60);
+                const segTime = `${segMinutes.toString().padStart(2, '0')}:${segSeconds.toString().padStart(2, '0')}`;
+                
+                // Create segment timestamp URL
+                const segmentUrl = `https://www.youtube.com/watch?v=${data.videoId}&t=${Math.floor(segment.start)}s`;
+                
+                segmentElement.innerHTML = `
+                  <a href="${segmentUrl}" target="_blank" class="timestamp">[${segTime}]</a> ${segment.text}
+                `;
+                
+                transcriptContainer.appendChild(segmentElement);
+              });
+            } else {
+              transcriptContainer.innerHTML = '<p>No transcript segments in this chapter.</p>';
+            }
+            
+            chapterElement.appendChild(transcriptContainer);
+            chaptersContainer.appendChild(chapterElement);
+          });
+          
+          transcriptDiv.appendChild(chaptersContainer);
+        } else {
+          transcriptDiv.innerHTML += '<p>No chapters found for this video.</p>';
+        }
+        
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    async function analyzeTranscript() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      const question = document.getElementById('questionInput').value.trim();
+      const analysisResultDiv = document.getElementById('analysisResult');
+      const loadingDiv = document.getElementById('loading');
+      const errorDiv = document.getElementById('error');
+      
+      // Reset
+      analysisResultDiv.textContent = '';
+      errorDiv.textContent = '';
+      loadingDiv.style.display = 'block';
+      
+      if (!url) {
+        errorDiv.textContent = 'Please enter a YouTube URL';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      if (!question) {
+        errorDiv.textContent = 'Please enter a question';
+        loadingDiv.style.display = 'none';
+        return;
+      }
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/analyze-transcript', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url, question }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to analyze transcript');
+        }
+        
+        // Display the analysis
+        let analysisHTML = `
+          <h3>Analysis for "${data.title}"</h3>
+          <p><strong>Question:</strong> ${question}</p>
+        `;
+        
+        // Add overall analysis if available
+        if (data.overallAnalysis) {
+          analysisHTML += `
+            <div class="overall-analysis">
+              <h4>Overall Analysis</h4>
+              <div class="analysis-content">${data.overallAnalysis.replace(/\n/g, '<br>')}</div>
+            </div>
+          `;
+        }
+        
+        // Add chapter analyses
+        if (data.chapterAnalyses && data.chapterAnalyses.length > 0) {
+          analysisHTML += `<h4>Chapter-by-Chapter Analysis</h4>`;
+          
+          data.chapterAnalyses.forEach(chapter => {
+            analysisHTML += `
+              <div class="chapter-analysis">
+                <h5>${chapter.chapterTitle} (${chapter.startTime})</h5>
+                <div class="analysis-content">${chapter.analysis.replace(/\n/g, '<br>')}</div>
+              </div>
+            `;
+          });
+        }
+        
+        analysisResultDiv.innerHTML = analysisHTML;
+        
+      } catch (error) {
+        errorDiv.textContent = error.message;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    // Helper function to format duration
+    function formatDuration(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
+      return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    async function clearAllCache() {
+      try {
+        const response = await fetch('http://localhost:3000/api/clear-cache', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        });
+        
+        const data = await response.json();
+        alert(data.message);
+      } catch (error) {
+        alert(`Error clearing cache: ${error.message}`);
+      }
+    }
+    
+    async function clearVideoCache() {
+      const url = document.getElementById('youtubeUrl').value.trim();
+      if (!url) {
+        alert('Please enter a YouTube URL first');
+        return;
+      }
+      
+      try {
+        const videoId = extractVideoId(url);
+        const response = await fetch('http://localhost:3000/api/clear-cache', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            key: { service: 'chaptersWithTranscript', videoId } 
+          }),
+        });
+        
+        const data = await response.json();
+        alert(data.message);
+      } catch (error) {
+        alert(`Error clearing cache: ${error.message}`);
+      }
+    }
+  </script>
+</body>
+</html> 

@@ -1,0 +1,901 @@
+given this highlight
+
+```
+{
+      "chapterTitle": "() State of autonomous robots",
+      "startTime": "14:22",
+      "duration": "6:44",
+      "analysis": "Here’s a highlight from the transcript that could make for an engaging short video:\n\n---\n\n**Highlight:**  \n*\"The coolest part of this demo by the way which I loved was they take an apple and then the second robot figures out that it should go in the fruit bowl, pushes the fruit bowl to the first robot, and then the first robot places it there. That level of semantic awareness and understanding between two models working dependently is very cool. Look at that, they’re collaborating with each other. Makes total sense.\"*\n\n---\n\nThis segment captures the excitement around the robots' ability to collaborate and demonstrate semantic awareness, which is a key breakthrough in autonomous robotics. It’s visually descriptive and highlights the innovative nature of the technology, making it ideal for a short, engaging video. You could pair it with footage of the demo (if available) or animations to visually illustrate the robots' actions."
+    },
+```
+
+give me the transcript from this list that should be included in the given highlight suggestion
+ {
+      "title": "() State of autonomous robots",
+      "start": 862,
+      "startFormatted": "14:22",
+      "segments": [
+        {
+          "text": "of the Pod Brett atock who&amp;#39;s a CEO and",
+          "start": 863.839,
+          "duration": 4.44
+        },
+        {
+          "text": "founder of figure he just announced",
+          "start": 866.199,
+          "duration": 4.841
+        },
+        {
+          "text": "today that he&amp;#39;s moved his timelines up",
+          "start": 868.279,
+          "duration": 5.92
+        },
+        {
+          "text": "by two years he&amp;#39;s going to Beta Testing",
+          "start": 871.04,
+          "duration": 5.4
+        },
+        {
+          "text": "robots in the home by by the middle to",
+          "start": 874.199,
+          "duration": 3.241
+        },
+        { "text": "end of this", "start": 876.44, "duration": 3.399 },
+        {
+          "text": "year that&amp;#39;s crazy",
+          "start": 877.44,
+          "duration": 5.16
+        },
+        {
+          "text": "crazy crazy I mean are you an investor",
+          "start": 879.839,
+          "duration": 5.161
+        },
+        {
+          "text": "in his company I don&amp;#39;t talk about my",
+          "start": 882.6,
+          "duration": 5.239
+        },
+        {
+          "text": "investments but in this casos here but",
+          "start": 885,
+          "duration": 5.16
+        },
+        {
+          "text": "in this case no I&amp;#39;m not an",
+          "start": 887.839,
+          "duration": 4.521
+        },
+        {
+          "text": "investor so we&amp;#39;re not talking a book",
+          "start": 890.16,
+          "duration": 5.44
+        },
+        {
+          "text": "here I do think Optimus and this figure",
+          "start": 892.36,
+          "duration": 5.279
+        },
+        {
+          "text": "and the other this about a dozen of",
+          "start": 895.6,
+          "duration": 4.56
+        },
+        {
+          "text": "these doing it credibly if they can make",
+          "start": 897.639,
+          "duration": 4.32
+        },
+        {
+          "text": "these for what shamama 20 grand when do",
+          "start": 900.16,
+          "duration": 3.239
+        },
+        {
+          "text": "you think it becomes something a middle",
+          "start": 901.959,
+          "duration": 3.361
+        },
+        {
+          "text": "class household you know dual income",
+          "start": 903.399,
+          "duration": 4.601
+        },
+        {
+          "text": "household would buy one of",
+          "start": 905.32,
+          "duration": 5.12
+        },
+        {
+          "text": "these five years from now 10 years from",
+          "start": 908,
+          "duration": 5.16
+        },
+        {
+          "text": "now how how could they be well I think",
+          "start": 910.44,
+          "duration": 5.199
+        },
+        {
+          "text": "the issue is bounded by two things one",
+          "start": 913.16,
+          "duration": 3.679
+        },
+        { "text": "is", "start": 915.639, "duration": 3.64 },
+        {
+          "text": "that I&amp;#39;m not sure that the generalized",
+          "start": 916.839,
+          "duration": 6
+        },
+        {
+          "text": "AI is good enough yet and what he did",
+          "start": 919.279,
+          "duration": 6.92
+        },
+        {
+          "text": "was he had a deal with open AI which he",
+          "start": 922.839,
+          "duration": 5.161
+        },
+        {
+          "text": "pretty publicly cancelled a few weeks",
+          "start": 926.199,
+          "duration": 7.281
+        },
+        {
+          "text": "ago m and he announced his own model and",
+          "start": 928,
+          "duration": 7.279
+        },
+        {
+          "text": "I don&amp;#39;t know the details of it to know",
+          "start": 933.48,
+          "duration": 4.52
+        },
+        {
+          "text": "whether he rolled it himself or this is",
+          "start": 935.279,
+          "duration": 5.68
+        },
+        {
+          "text": "just like taking some open source based",
+          "start": 938,
+          "duration": 4.959
+        },
+        {
+          "text": "model and iterating from",
+          "start": 940.959,
+          "duration": 5.36
+        },
+        {
+          "text": "it but I think the model is not perfect",
+          "start": 942.959,
+          "duration": 7.12
+        },
+        {
+          "text": "yet to be general purpose that&amp;#39;s one and",
+          "start": 946.319,
+          "duration": 5.2
+        },
+        {
+          "text": "then the second is a practical issue",
+          "start": 950.079,
+          "duration": 3.32
+        },
+        {
+          "text": "with the robots which is that the",
+          "start": 951.519,
+          "duration": 4.641
+        },
+        {
+          "text": "actuators themselves are good but",
+          "start": 953.399,
+          "duration": 4.68
+        },
+        {
+          "text": "they&amp;#39;re not great and you can see it in",
+          "start": 956.16,
+          "duration": 4.88
+        },
+        {
+          "text": "in the demo where it&amp;#39;s an incredible",
+          "start": 958.079,
+          "duration": 4.961
+        },
+        {
+          "text": "demo because it shows the value and the",
+          "start": 961.04,
+          "duration": 4.159
+        },
+        {
+          "text": "power of the model where there&amp;#39;s sort of",
+          "start": 963.04,
+          "duration": 4.4
+        },
+        {
+          "text": "this Master Slave orientation that has",
+          "start": 965.199,
+          "duration": 3.801
+        },
+        {
+          "text": "to happen where one model is actually",
+          "start": 967.44,
+          "duration": 3.8
+        },
+        {
+          "text": "doing most of the computation and the",
+          "start": 969,
+          "duration": 4.12
+        },
+        {
+          "text": "second model and the second robot is in",
+          "start": 971.24,
+          "duration": 4.279
+        },
+        {
+          "text": "feeding off of it and the demo that they",
+          "start": 973.12,
+          "duration": 4.159
+        },
+        {
+          "text": "do Nick you can probably find the video",
+          "start": 975.519,
+          "duration": 4.44
+        },
+        {
+          "text": "is of them sorting a bag of groceries",
+          "start": 977.279,
+          "duration": 5.161
+        },
+        {
+          "text": "for the first time totally unsupervised",
+          "start": 979.959,
+          "duration": 4.24
+        },
+        {
+          "text": "which and it&amp;#39;s it&amp;#39;s an incredibly cool",
+          "start": 982.44,
+          "duration": 4.04
+        },
+        {
+          "text": "demo it&amp;#39;s a cool demo the thing that",
+          "start": 984.199,
+          "duration": 3.56
+        },
+        {
+          "text": "that you notice though is that the",
+          "start": 986.48,
+          "duration": 2.919
+        },
+        {
+          "text": "actuators are good they&amp;#39;re not great and",
+          "start": 987.759,
+          "duration": 3.44
+        },
+        {
+          "text": "so the physical dexterity is still",
+          "start": 989.399,
+          "duration": 4.201
+        },
+        {
+          "text": "relatively limited and I think that that",
+          "start": 991.199,
+          "duration": 4.281
+        },
+        {
+          "text": "doesn&amp;#39;t allow these robots to be super",
+          "start": 993.6,
+          "duration": 3.479
+        },
+        {
+          "text": "functional in the next couple of years",
+          "start": 995.48,
+          "duration": 4.039
+        },
+        {
+          "text": "but when they get that figured out then",
+          "start": 997.079,
+          "duration": 3.721
+        },
+        {
+          "text": "I think it could be really useful",
+          "start": 999.519,
+          "duration": 2.88
+        },
+        {
+          "text": "because if you have a robot like this",
+          "start": 1000.8,
+          "duration": 5.88
+        },
+        {
+          "text": "that could sort the groceries make food",
+          "start": 1002.399,
+          "duration": 7.36
+        },
+        {
+          "text": "do the laundry mow the lawn so to speak",
+          "start": 1006.68,
+          "duration": 4.88
+        },
+        {
+          "text": "it just requires a level of dexterity",
+          "start": 1009.759,
+          "duration": 4.08
+        },
+        {
+          "text": "that&amp;#39;s not yet totally possible but see",
+          "start": 1011.56,
+          "duration": 3.68
+        },
+        {
+          "text": "in this example what you&amp;#39;re seeing are",
+          "start": 1013.839,
+          "duration": 3.641
+        },
+        {
+          "text": "the two robots basically figuring out",
+          "start": 1015.24,
+          "duration": 4
+        },
+        {
+          "text": "how to communicate semantically between",
+          "start": 1017.48,
+          "duration": 3.32
+        },
+        {
+          "text": "the robots and that&amp;#39;s incredibly",
+          "start": 1019.24,
+          "duration": 3.8
+        },
+        {
+          "text": "powerful and it&amp;#39;s yet another sort of",
+          "start": 1020.8,
+          "duration": 3.56
+        },
+        {
+          "text": "breakthrough that we need so I don&amp;#39;t",
+          "start": 1023.04,
+          "duration": 2.84
+        },
+        {
+          "text": "know we&amp;#39;re probably like a couple years",
+          "start": 1024.36,
+          "duration": 3.719
+        },
+        {
+          "text": "away but see look at the dexterity there",
+          "start": 1025.88,
+          "duration": 4.72
+        },
+        {
+          "text": "he&amp;#39;s taking the pepp farms and feels",
+          "start": 1028.079,
+          "duration": 4.48
+        },
+        {
+          "text": "like he&amp;#39;s crushing the pepp Farms or she",
+          "start": 1030.6,
+          "duration": 3.52
+        },
+        {
+          "text": "or whatever you call this robot they",
+          "start": 1032.559,
+          "duration": 3.841
+        },
+        {
+          "text": "then please don&amp;#39;t misgender the robot",
+          "start": 1034.12,
+          "duration": 3.799
+        },
+        {
+          "text": "but it&amp;#39;s it&amp;#39;s really incredible they&amp;#39;re",
+          "start": 1036.4,
+          "duration": 3.24
+        },
+        {
+          "text": "figuring the the coolest part of this",
+          "start": 1037.919,
+          "duration": 3.841
+        },
+        {
+          "text": "demo by the way which I loved was they",
+          "start": 1039.64,
+          "duration": 5.199
+        },
+        {
+          "text": "take an apple and then the second robot",
+          "start": 1041.76,
+          "duration": 4.88
+        },
+        {
+          "text": "figures out that it should go in the",
+          "start": 1044.839,
+          "duration": 4.641
+        },
+        {
+          "text": "fruit bow pushes the fruit bow to the",
+          "start": 1046.64,
+          "duration": 5.44
+        },
+        {
+          "text": "first robot and then the first robot",
+          "start": 1049.48,
+          "duration": 4.8
+        },
+        {
+          "text": "that&amp;#39;s cool there it is but that level",
+          "start": 1052.08,
+          "duration": 4.32
+        },
+        {
+          "text": "of semantic awareness and understanding",
+          "start": 1054.28,
+          "duration": 5.12
+        },
+        {
+          "text": "between two models working",
+          "start": 1056.4,
+          "duration": 6.159
+        },
+        {
+          "text": "dependently is very cool look at that",
+          "start": 1059.4,
+          "duration": 5.2
+        },
+        {
+          "text": "that&amp;#39;s very cool they&amp;#39;re collaborating",
+          "start": 1062.559,
+          "duration": 3.281
+        },
+        {
+          "text": "with each other makes total sense I can",
+          "start": 1064.6,
+          "duration": 3.36
+        },
+        {
+          "text": "tell you here on the ranch I would love",
+          "start": 1065.84,
+          "duration": 4.32
+        },
+        {
+          "text": "to have an allpurpose robot going out",
+          "start": 1067.96,
+          "duration": 4.32
+        },
+        {
+          "text": "there and using the weed whacker and and",
+          "start": 1070.16,
+          "duration": 4.639
+        },
+        {
+          "text": "trimming the the the the bushes and the",
+          "start": 1072.28,
+          "duration": 4.04
+        },
+        {
+          "text": "hedges and getting me wood and",
+          "start": 1074.799,
+          "duration": 3.201
+        },
+        {
+          "text": "collecting chicken eggs like there&amp;#39;s a",
+          "start": 1076.32,
+          "duration": 3.52
+        },
+        {
+          "text": "million things they could do on a ranch",
+          "start": 1078,
+          "duration": 4.76
+        },
+        {
+          "text": "it be immediately applicable for ranch",
+          "start": 1079.84,
+          "duration": 4.8
+        },
+        {
+          "text": "work and if they&amp;#39;re 24 hours a day it",
+          "start": 1082.76,
+          "duration": 3.76
+        },
+        {
+          "text": "doesn&amp;#39;t matter if they go slow but I I",
+          "start": 1084.64,
+          "duration": 3.36
+        },
+        {
+          "text": "think this is the category people are",
+          "start": 1086.52,
+          "duration": 3.519
+        },
+        {
+          "text": "sleeping on and I I don&amp;#39;t know who on",
+          "start": 1088,
+          "duration": 4.32
+        },
+        {
+          "text": "the on our prediction show said this",
+          "start": 1090.039,
+          "duration": 4
+        },
+        {
+          "text": "will be the year of robots but it&amp;#39;s been",
+          "start": 1092.32,
+          "duration": 3.359
+        },
+        {
+          "text": "this is the year of robots for 30 years",
+          "start": 1094.039,
+          "duration": 3.201
+        },
+        {
+          "text": "in the industry and it does feel like",
+          "start": 1095.679,
+          "duration": 3.88
+        },
+        {
+          "text": "this is it freeberg you&amp;#39;re sticking with",
+          "start": 1097.24,
+          "duration": 5.919
+        },
+        {
+          "text": "your prediction I assume yeah I am yeah",
+          "start": 1099.559,
+          "duration": 5.401
+        },
+        {
+          "text": "I think it&amp;#39;s",
+          "start": 1103.159,
+          "duration": 4.041
+        },
+        {
+          "text": "also it&amp;#39;s not just this kind of",
+          "start": 1104.96,
+          "duration": 5.4
+        },
+        {
+          "text": "dexterous automation but but I do think",
+          "start": 1107.2,
+          "duration": 5.64
+        },
+        { "text": "drones autonomous", "start": 1110.36, "duration": 4.76 },
+        {
+          "text": "vehicles I put them all in the same",
+          "start": 1112.84,
+          "duration": 4.199
+        },
+        {
+          "text": "category where there there&amp;#39;s some it&amp;#39;s",
+          "start": 1115.12,
+          "duration": 5.919
+        },
+        {
+          "text": "some combination of mechanical response",
+          "start": 1117.039,
+          "duration": 6.281
+        },
+        { "text": "to a machine Vision", "start": 1121.039, "duration": 6.401 },
+        {
+          "text": "system that uh I think has become like",
+          "start": 1123.32,
+          "duration": 5.839
+        },
+        {
+          "text": "accelerated this year you need a lot of",
+          "start": 1127.44,
+          "duration": 3.84
+        },
+        {
+          "text": "rare Earths to make robots yeah where",
+          "start": 1129.159,
+          "duration": 4.161
+        },
+        {
+          "text": "could we ever get those from H does",
+          "start": 1131.28,
+          "duration": 3.56
+        },
+        {
+          "text": "anybody owe us a little money is anybody",
+          "start": 1133.32,
+          "duration": 3.28
+        },
+        {
+          "text": "behind on their payments maybe The Vig",
+          "start": 1134.84,
+          "duration": 5.079
+        },
+        {
+          "text": "could be a little you know taste",
+          "start": 1136.6,
+          "duration": 4.48
+        },
+        {
+          "text": "I don&amp;#39;t know if you guys have seen this",
+          "start": 1139.919,
+          "duration": 2.841
+        },
+        {
+          "text": "but there was a company in the 90s that",
+          "start": 1141.08,
+          "duration": 3.56
+        },
+        {
+          "text": "was all the rage called segue they were",
+          "start": 1142.76,
+          "duration": 3.68
+        },
+        {
+          "text": "going to absolutely change cities and",
+          "start": 1144.64,
+          "duration": 3.64
+        },
+        {
+          "text": "everything and they never did but it was",
+          "start": 1146.44,
+          "duration": 3.239
+        },
+        {
+          "text": "basically like a scooter you could walk",
+          "start": 1148.28,
+          "duration": 4.399
+        },
+        {
+          "text": "on and had a a balancing uh kind of",
+          "start": 1149.679,
+          "duration": 4.601
+        },
+        {
+          "text": "system to it but they made robots and",
+          "start": 1152.679,
+          "duration": 4.36
+        },
+        {
+          "text": "here they&amp;#39;re making these lawnmowers now",
+          "start": 1154.28,
+          "duration": 4.92
+        },
+        {
+          "text": "and these lawnmowers are really like",
+          "start": 1157.039,
+          "duration": 3.961
+        },
+        {
+          "text": "cheap they&amp;#39;re a th000 bucks and they",
+          "start": 1159.2,
+          "duration": 4.52
+        },
+        {
+          "text": "work here in Austin I have seen two or",
+          "start": 1161,
+          "duration": 4.72
+        },
+        {
+          "text": "three of these on people&amp;#39;s Lawns this",
+          "start": 1163.72,
+          "duration": 4
+        },
+        {
+          "text": "could be like you know what was the one",
+          "start": 1165.72,
+          "duration": 4.72
+        },
+        {
+          "text": "that you did in your house Roomba so",
+          "start": 1167.72,
+          "duration": 4.52
+        },
+        {
+          "text": "your point freeberg there will be",
+          "start": 1170.44,
+          "duration": 4.119
+        },
+        {
+          "text": "Purpose Driven ones to deliver you a",
+          "start": 1172.24,
+          "duration": 5.439
+        },
+        {
+          "text": "burrito do your lawn Etc and a room is",
+          "start": 1174.559,
+          "duration": 5.24
+        },
+        {
+          "text": "like three or 400 bucks I think and this",
+          "start": 1177.679,
+          "duration": 4.88
+        },
+        {
+          "text": "thing&amp;#39;s a th000 bucks man this is going",
+          "start": 1179.799,
+          "duration": 4.281
+        },
+        {
+          "text": "to get crazy I do think it&amp;#39;s it&amp;#39;s a lot",
+          "start": 1182.559,
+          "duration": 3.441
+        },
+        {
+          "text": "harder to create one of these general",
+          "start": 1184.08,
+          "duration": 4.599
+        },
+        {
+          "text": "purpose systems in automation then",
+          "start": 1186,
+          "duration": 5.32
+        },
+        {
+          "text": "create like vertically or kind of",
+          "start": 1188.679,
+          "duration": 5.841
+        },
+        {
+          "text": "utility specific automation system so a",
+          "start": 1191.32,
+          "duration": 5.16
+        },
+        {
+          "text": "device that just does one thing delivers",
+          "start": 1194.52,
+          "duration": 3.76
+        },
+        {
+          "text": "something to you in the air or drives",
+          "start": 1196.48,
+          "duration": 4.6
+        },
+        {
+          "text": "your food to you or loads and unloads",
+          "start": 1198.28,
+          "duration": 5.08
+        },
+        {
+          "text": "your dishes you know I&amp;#39;m not sure if",
+          "start": 1201.08,
+          "duration": 3.839
+        },
+        {
+          "text": "that&amp;#39;s the whole the whole idea of the",
+          "start": 1203.36,
+          "duration": 6
+        },
+        {
+          "text": "humanoid is it&amp;#39;s ambitious yeah it is a",
+          "start": 1204.919,
+          "duration": 8
+        },
+        {
+          "text": "general purpose device and it makes a a",
+          "start": 1209.36,
+          "duration": 5.6
+        },
+        {
+          "text": "technically very hard road map I got to",
+          "start": 1212.919,
+          "duration": 4.24
+        },
+        {
+          "text": "imagine some of the bulldozers out there",
+          "start": 1214.96,
+          "duration": 4.719
+        },
+        {
+          "text": "are also now becoming remote controlled",
+          "start": 1217.159,
+          "duration": 4.241
+        },
+        {
+          "text": "so you can get like a a bulldozzer that",
+          "start": 1219.679,
+          "duration": 3.921
+        },
+        {
+          "text": "you have to put in a dangerous situation",
+          "start": 1221.4,
+          "duration": 3.96
+        },
+        {
+          "text": "and their remote control and they&amp;#39;re",
+          "start": 1223.6,
+          "duration": 3.959
+        },
+        {
+          "text": "going to have ai so I got pitched on a",
+          "start": 1225.36,
+          "duration": 3.96
+        },
+        {
+          "text": "startup one time that was to go up into",
+          "start": 1227.559,
+          "duration": 5.36
+        },
+        {
+          "text": "Tahoe Hills and allow humans with remote",
+          "start": 1229.32,
+          "duration": 5.28
+        },
+        {
+          "text": "controls to drive Jam off little",
+          "start": 1232.919,
+          "duration": 3.721
+        },
+        {
+          "text": "bulldozers and make fire pths so imagine",
+          "start": 1234.6,
+          "duration": 4.319
+        },
+        {
+          "text": "some fire breaks out you send in or",
+          "start": 1236.64,
+          "duration": 5.2
+        },
+        {
+          "text": "helicopter in the bulldozzer no human in",
+          "start": 1238.919,
+          "duration": 4.64
+        },
+        {
+          "text": "it just got a 5G connection or a",
+          "start": 1241.84,
+          "duration": 4.28
+        },
+        {
+          "text": "starlane connection and Zip Zip Zip",
+          "start": 1243.559,
+          "duration": 4.24
+        },
+        {
+          "text": "you&amp;#39;re doing fire roads in the middle of",
+          "start": 1246.12,
+          "duration": 3.559
+        },
+        {
+          "text": "the smoke dense area it&amp;#39;s going to be",
+          "start": 1247.799,
+          "duration": 4.12
+        },
+        {
+          "text": "really interesting when these things uh",
+          "start": 1249.679,
+          "duration": 4.321
+        },
+        {
+          "text": "get dialed in and they&amp;#39;re getting every",
+          "start": 1251.919,
+          "duration": 4.041
+        },
+        {
+          "text": "day I&amp;#39;m going to ask Brett to be a ba",
+          "start": 1254,
+          "duration": 3.6
+        },
+        {
+          "text": "Alpha tester of one of these robots in",
+          "start": 1255.96,
+          "duration": 3.199
+        },
+        {
+          "text": "my house and then we&amp;#39;ll go and do we&amp;#39;ll",
+          "start": 1257.6,
+          "duration": 3.88
+        },
+        {
+          "text": "do a segment that would be great excuse",
+          "start": 1259.159,
+          "duration": 3.361
+        },
+        { "text": "me", "start": 1261.48, "duration": 4.28 },
+        {
+          "text": "robot can I get some more morels toot",
+          "start": 1262.52,
+          "duration": 5.32
+        },
+        {
+          "text": "sweet morels let&amp;#39;s talk about stripe I",
+          "start": 1265.76,
+          "duration": 4.32
+        }
+      ],
+      "end": 1266,
+      "durationFormatted": "6:44"
+    },

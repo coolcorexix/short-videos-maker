@@ -1,0 +1,82 @@
+{
+  "text": " Listen. Today's podcast episode is all about sleep.",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 3.74,
+      "text": " Listen. Today's podcast episode is all about sleep.",
+      "tokens": [
+        50364,
+        7501,
+        13,
+        2692,
+        311,
+        7367,
+        3500,
+        307,
+        439,
+        466,
+        2817,
+        13,
+        50556
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.5033825125013079,
+      "compression_ratio": 0.864406779661017,
+      "no_speech_prob": 0.1172810047864914,
+      "words": [
+        {
+          "word": " Listen.",
+          "start": 0.0,
+          "end": 0.34,
+          "probability": 0.10601072013378143
+        },
+        {
+          "word": " Today's",
+          "start": 1.1,
+          "end": 1.52,
+          "probability": 0.9698122441768646
+        },
+        {
+          "word": " podcast",
+          "start": 1.52,
+          "end": 1.88,
+          "probability": 0.9323000311851501
+        },
+        {
+          "word": " episode",
+          "start": 1.88,
+          "end": 2.42,
+          "probability": 0.9867420792579651
+        },
+        {
+          "word": " is",
+          "start": 2.42,
+          "end": 2.92,
+          "probability": 0.9943458437919617
+        },
+        {
+          "word": " all",
+          "start": 2.92,
+          "end": 3.08,
+          "probability": 0.9460732340812683
+        },
+        {
+          "word": " about",
+          "start": 3.08,
+          "end": 3.52,
+          "probability": 0.9973102807998657
+        },
+        {
+          "word": " sleep.",
+          "start": 3.52,
+          "end": 3.74,
+          "probability": 0.8681450486183167
+        }
+      ]
+    }
+  ],
+  "language": "en"
+}
