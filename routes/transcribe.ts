@@ -65,7 +65,7 @@ router.post('/transcribe-video', upload.single('video'), async (req, res) => {
       count: segments.length
     });
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error transcribing video:', error);
     res.status(500).json({ 
       error: 'Failed to transcribe video', 
@@ -123,11 +123,54 @@ router.post('/transcribe-and-burn', upload.single('video'), async (req, res) => 
       count: segments.length
     });
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error transcribing and burning subtitles:', error);
     res.status(500).json({ 
       error: 'Failed to process video', 
       details: error.message 
+    });
+  }
+});
+
+// Route to transcribe a YouTube video by URL
+router.post('/transcribe-youtube', async (req, res) => {
+  try {
+    const { url, model, language, speakerDiarization, numSpeakers } = req.body;
+    if (!url) {
+      return res.status(400).json({ error: 'YouTube URL is required' });
+    }
+
+    // Dynamically import the downloader to avoid circular deps
+    const youtubeDownloader = (await import('../utils/youtubeDownloader.js')).default;
+
+    // Download the YouTube video
+    const videoPath = await youtubeDownloader.downloadVideo(url, {
+      quality: 'highest',
+      filter: 'audioandvideo'
+    });
+
+    // Prepare Whisper options
+    const options = {
+      model: model || 'base',
+      language: language || 'en',
+      speakerDiarization: speakerDiarization === true || speakerDiarization === 'true',
+      numSpeakers: parseInt(numSpeakers || '2')
+    };
+
+    // Transcribe the video
+    const segments = await transcriber.transcribeVideo(videoPath, options);
+
+    res.json({
+      success: true,
+      videoPath,
+      segments,
+      count: segments.length
+    });
+  } catch (error: any) {
+    console.error('Error transcribing YouTube video:', error);
+    res.status(500).json({
+      error: 'Failed to transcribe YouTube video',
+      details: error.message
     });
   }
 });
